@@ -5,25 +5,25 @@
 Console.Clear();
 
 int size = Input("Введите размер массива");
-int min = Input("Введите минимальное вещественное число в массиве");
-int max = Input("Введите максимальное вещественное число в массиве");
+// int min = Input("Введите минимальное вещественное число в массиве");
+// int max = Input("Введите максимальное вещественное число в массиве");
 
-int[] array = GetArray(size, min, max);
+double[] array = GetArray(size); //, min, max
 PrintArray(array);
 Console.WriteLine();
 Dif(array);
 
-int[] GetArray(int sizeArray, int minNumber, int maxNumber)
+double[] GetArray(int sizeArray) //, int minNumber, int maxNumber
 {
-    int[] res =new int[sizeArray];
+    double[] res =new double[sizeArray];
     for(int i = 0; i < sizeArray; i++)
     {
-        res[i] = new Random().Next(minNumber, maxNumber +1);
+        res[i] = new Random().NextDouble() *10;
     }
     return res;
 }
 
-void PrintArray(int[] SomeArray)
+void PrintArray(double[] SomeArray)
 {
     Console.Write("[");
     for (int i = 0; i < SomeArray.Length -1; i++)
@@ -41,11 +41,11 @@ int Input(string message)
     return res;
 }
 
-int Dif(int[] someArray)
+double Dif(double[] someArray)
 {
-    int dif = 0;
-    int maxNumber = 0;
-    int minNumber = 0;
+    double dif = 0;
+    double maxNumber = 0;
+    double minNumber = 0;
     for(int i = 0; i < someArray.Length; i++)
     {
         if(someArray[i] > maxNumber) maxNumber = someArray[i];
