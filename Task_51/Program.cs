@@ -15,7 +15,9 @@ int[,] array = getArray(rows, colunns, 0 , 10);
 PrintArray(array);
 
 Console.WriteLine();
-Aref(array,rows,colunns);
+
+double[] averageColumns = GetAref(array);
+Console.WriteLine($"Среднее арифметическое каждого столбца = {String.Join("; ", averageColumns)}");
 
 int[,] getArray( int m, int n, int minValue, int maxValue)
 {
@@ -42,18 +44,18 @@ void PrintArray(int[,] inArray)
     }
 }
 
-int Aref(int[,] inArray, int n1, int n2)
+double GetAref(int[,] inArray)
 {
-    int res = 0;
-    for(int i=0; i<inArray.GetLength(1); i++)
+    double[] res = new double[inArray.GetLength(1)];
+    for(int j=0; j<inArray.GetLength(1); j++)
     {
-        res += inArray[n1,i];
+        double sum = 0;
+        for(int i=0; i<inArray.GetLength(0); i++)
+        {
+            sum += inArray[i, j];
+        }
+        res[j] = Math.Round(sum/ inArray.GetLength(0), 2);
     }
-    res = res/n2;
-
-    Console.WriteLine();
-
-    Console.WriteLine($"Среднее арефметическое {res}");
     return res;
 }
 
